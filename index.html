@@ -80,15 +80,26 @@
       inset: 0;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 5vh 6vw 56px;
+      padding: 3.5vh 6vw 56px;
       opacity: 0;
       visibility: hidden;
       transform: translateY(24px);
       transition: opacity .55s var(--ease), transform .55s var(--ease), visibility 0s .55s;
       background: var(--bg);
       will-change: transform, opacity;
-      overflow: hidden
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: none
+    }
+
+    .slide::-webkit-scrollbar {
+      display: none
+    }
+
+    .slide:not(.cover):not(.closing)::before,
+    .slide:not(.cover):not(.closing)::after {
+      content: '';
+      flex: 1 0 0px
     }
 
     .slide.active {
@@ -124,17 +135,17 @@
       letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--blue);
-      margin-bottom: .75rem
+      margin-bottom: .5rem
     }
 
     .ttl {
       font-family: 'Poppins', sans-serif;
-      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
       font-weight: 800;
-      line-height: 1.08;
+      line-height: 1.1;
       letter-spacing: -.03em;
       color: var(--t9);
-      margin-bottom: 1.25rem
+      margin-bottom: .75rem
     }
 
     .ttl .hl {
@@ -145,9 +156,9 @@
     }
 
     .sub {
-      font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+      font-size: clamp(.95rem, 1.5vw, 1.15rem);
       color: var(--t5);
-      line-height: 1.55;
+      line-height: 1.5;
       max-width: 52ch
     }
 
@@ -1178,7 +1189,7 @@
    SLIDE 4: SCALING STRATEGY
    ═══════════════════════════════════ */
     .scale-callout {
-      padding: 1rem 1.5rem;
+      padding: .6rem 1.25rem;
       background: linear-gradient(135deg, rgba(37, 99, 235, .04), rgba(13, 148, 136, .04));
       border: 1px solid var(--bdr);
       border-left: 3px solid var(--blue);
@@ -1199,15 +1210,15 @@
     .scale-cols {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      margin-bottom: 1.25rem
+      gap: .75rem;
+      margin-bottom: .75rem
     }
 
     .scale-col {
       background: var(--card);
       border: 1px solid var(--bdr);
       border-radius: 14px;
-      padding: 1.1rem 1rem;
+      padding: .75rem .85rem;
       transition: all .35s var(--ease)
     }
 
@@ -1275,8 +1286,8 @@
 
     .gtm-card {
       display: flex;
-      gap: .75rem;
-      padding: 1rem;
+      gap: .6rem;
+      padding: .7rem;
       background: var(--card);
       border: 1px solid var(--bdr);
       border-radius: 12px;
@@ -1309,15 +1320,15 @@
       overflow: hidden;
       border-radius: 12px;
       border: 1px solid var(--bdr);
-      font-size: .78rem
+      font-size: .72rem
     }
 
     .roadmap-table th {
       font-family: 'Poppins', sans-serif;
       font-weight: 700;
-      font-size: .78rem;
+      font-size: .72rem;
       color: var(--t9);
-      padding: .65rem .8rem;
+      padding: .4rem .7rem;
       background: var(--bg2);
       text-align: left;
       border-bottom: 1px solid var(--bdr);
@@ -1329,7 +1340,7 @@
     }
 
     .roadmap-table td {
-      padding: .6rem .8rem;
+      padding: .35rem .7rem;
       border-bottom: 1px solid var(--bdr-l);
       color: var(--t5);
       line-height: 1.4;
@@ -1378,8 +1389,8 @@
     .vision-bar {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
-      padding: 1rem 1.5rem;
+      gap: 1.25rem;
+      padding: .6rem 1.25rem;
       background: linear-gradient(135deg, rgba(37, 99, 235, .04), rgba(13, 148, 136, .04));
       border: 1px solid var(--bdr);
       border-radius: 14px;
@@ -1387,9 +1398,9 @@
     }
 
     .vision-text {
-      font-size: .9rem;
+      font-size: .8rem;
       color: var(--t5);
-      line-height: 1.5
+      line-height: 1.45
     }
 
     .vision-text strong {
@@ -1413,8 +1424,8 @@
     .prod-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      margin-bottom: 1.25rem
+      gap: 1rem;
+      margin-bottom: .75rem
     }
 
     .prod-card {
@@ -1448,13 +1459,13 @@
 
     .prod-img {
       width: 100%;
-      height: 120px;
+      height: 75px;
       object-fit: cover;
       display: block
     }
 
     .prod-body {
-      padding: 1rem 1.15rem;
+      padding: .7rem 1rem;
       flex: 1;
       display: flex;
       flex-direction: column
@@ -1550,12 +1561,12 @@
     .future-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: .9rem;
-      margin-bottom: 1rem
+      gap: .75rem;
+      margin-bottom: .5rem
     }
 
     .future-card {
-      padding: .8rem;
+      padding: .55rem .7rem;
       background: var(--card);
       border: 1px solid var(--bdr);
       border-radius: 12px;
@@ -1581,7 +1592,9 @@
     }
 
     .future-card .ico {
-      margin-bottom: .4rem
+      width: 28px;
+      height: 28px;
+      margin-bottom: .2rem
     }
 
     .future-title {
@@ -1825,8 +1838,8 @@
     .team-grid-leaders {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 1rem;
+      gap: 1rem;
+      margin-bottom: .75rem;
       max-width: 850px;
       margin-left: auto;
       margin-right: auto
@@ -1835,15 +1848,15 @@
     .team-grid-core {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem;
-      margin-bottom: 1.5rem
+      gap: .75rem;
+      margin-bottom: .75rem
     }
 
     .team-card {
       background: var(--card);
       border: 1px solid var(--bdr);
       border-radius: 14px;
-      padding: 1.5rem 1.25rem;
+      padding: .85rem 1rem;
       text-align: center;
       transition: all .35s var(--ease);
       position: relative;
@@ -1873,13 +1886,13 @@
     }
 
     .leader-card {
-      padding: 1.75rem 1.5rem
+      padding: 1rem 1.25rem
     }
 
     .leader-card .team-avatar {
-      width: 72px;
-      height: 72px;
-      margin-bottom: 1rem
+      width: 56px;
+      height: 56px;
+      margin-bottom: .5rem
     }
 
     .leader-card .team-name {
@@ -1896,8 +1909,8 @@
     }
 
     .team-avatar {
-      width: 56px;
-      height: 56px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -1945,13 +1958,14 @@
     .team-bio-list {
       text-align: left;
       list-style-type: disc;
-      padding-left: 1.15rem;
-      margin-top: .6rem;
+      padding-left: 1rem;
+      margin-top: .35rem;
       margin-bottom: 0
     }
 
     .team-bio-list li {
-      margin-bottom: .3rem
+      margin-bottom: .15rem;
+      font-size: .65rem
     }
 
     .team-bottom {
@@ -2638,7 +2652,7 @@
         alt="">
       <div class="lbl rv">Who We Are</div>
       <h2 class="ttl rv" style="animation-delay:80ms">Software Development & <span class="hl">AI
-          Services</span><br>Since 2016</h2>
+          Services</span> <span style="font-size:.55em;font-weight:600;color:var(--t5);padding-left:.5em">Since 2016</span></h2>
 
       <div class="rv" style="animation-delay:160ms">
         <p class="sub" style="margin-bottom:1.25rem">We design, build & manage cutting-edge solutions for SMEs and
@@ -2800,7 +2814,7 @@
               <li>PhD in ML (IIT Delhi)</li>
               <li>50+ publications (850+ citations)</li>
               <li>Active contributor to GenAI & RAG</li>
-              <li>Ex-Samsung R&D, Ericsson AI, CDAC</li>
+              <li>Ex-Ericsson AI, CDAC</li>
             </ul>
           </div>
         </div>
@@ -2857,7 +2871,8 @@
     <section class="slide" data-slide="3">
       <img src="assets/ai-network.png" class="bg-img" style="opacity:.07" alt="">
       <div class="lbl rv">The Opportunity</div>
-      <h2 class="ttl rv" style="animation-delay:80ms;margin-bottom:2.5rem">$104B+ Market &mdash; <span class="hl">Why Now?</span></h2>
+      <h2 class="ttl rv" style="animation-delay:80ms">$104B+ Market &mdash; <span class="hl">Why
+          Now?</span></h2>
 
       <!-- Infographic: donut + segments + tailwinds -->
       <div class="info-layout rv" style="animation-delay:120ms">
@@ -3306,150 +3321,27 @@
       </div>
     </section>
 
-    <!-- ═══ SLIDE 7: SCALING STRATEGY ═══ -->
-    <section class="slide" data-slide="7">
-      <div class="lbl rv">The Growth Blueprint</div>
-      <h2 class="ttl rv" style="animation-delay:80ms">Accelerating from $1M to <span class="hl">$10M ARR</span></h2>
-
-      <div class="scale-callout rv" style="animation-delay:120ms">&ldquo;We are scaling our team to mirror our revenue
-        goals&mdash;<strong>not just our product roadmap.</strong>&rdquo;</div>
-
-      <div class="lbl rv" style="animation-delay:160ms">1. Talent Strategy &mdash; The &ldquo;Execution-First&rdquo;
-        Ramp Up</div>
-      <div class="scale-cols rv" style="animation-delay:200ms">
-        <div class="scale-col">
-          <div class="scale-col-head">
-            <div class="ico" style="background:var(--blue-l)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)"
-                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="4" y="4" width="16" height="16" rx="2" />
-                <path d="M9 9h6v6H9z" />
-                <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" />
-              </svg></div>
-            <div class="scale-col-title">Engineering & Research</div>
-            <div class="scale-col-pct">40%</div>
-          </div>
-          <div class="scale-col-desc">Doubling down on core <strong>AI infra, model security &amp; optimization</strong>
-            to maintain our 40% GPU utilization edge.</div>
-        </div>
-        <div class="scale-col">
-          <div class="scale-col-head">
-            <div class="ico" style="background:var(--teal-l)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)"
-                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-              </svg></div>
-            <div class="scale-col-title">Revenue & Growth</div>
-            <div class="scale-col-pct">40%</div>
-          </div>
-          <div class="scale-col-desc"><strong>Enterprise Sales, Pre-sales Solution Architects</strong> &amp; Customer
-            Success managers to drive LTV.</div>
-        </div>
-        <div class="scale-col">
-          <div class="scale-col-head">
-            <div class="ico" style="background:rgba(124,58,237,.08)"><svg viewBox="0 0 24 24" fill="none"
-                stroke="var(--purple)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                <path d="M9 12l2 2 4-4" />
-              </svg></div>
-            <div class="scale-col-title">Compliance & Governance</div>
-            <div class="scale-col-pct">20%</div>
-          </div>
-          <div class="scale-col-desc"><strong>AI Ethics &amp; Regulatory Affairs</strong> specialists to clear security
-            hurdles for BFSI/Healthcare procurement.</div>
-        </div>
-      </div>
-
-      <div class="lbl rv" style="animation-delay:240ms">2. Go-to-Market Strategy &mdash; Demand Generation & Authority
-      </div>
-      <div class="gtm-grid rv" style="animation-delay:280ms">
-        <div class="gtm-card">
-          <div class="ico" style="background:var(--blue-l);flex-shrink:0"><svg viewBox="0 0 24 24" fill="none"
-              stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M12 16v-4M12 8h.01" />
-            </svg></div>
-          <div>
-            <div class="gtm-title">Authority Marketing</div>
-            <div class="gtm-desc">Establishing Liberin as the &ldquo;Thought Leader&rdquo; in Trustworthy AI. PiiVacy
-              &amp; Governance frameworks anchor CIO/CISO conversations.</div>
-          </div>
-        </div>
-        <div class="gtm-card">
-          <div class="ico" style="background:var(--teal-l);flex-shrink:0"><svg viewBox="0 0 24 24" fill="none"
-              stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-              <polyline points="17 6 23 6 23 12" />
-            </svg></div>
-          <div>
-            <div class="gtm-title">Land &amp; Expand Funnel</div>
-            <div class="gtm-desc"><strong>Land:</strong> Boliye (CX) &amp; Septa (BI) for quick-win pilots.
-              <strong>Expand:</strong> PiiVacy &amp; Secure Signatures to deepen integration&mdash;making Liberin
-              &ldquo;un-rippable.&rdquo;
-            </div>
-          </div>
-        </div>
-        <div class="gtm-card">
-          <div class="ico" style="background:rgba(234,88,12,.08);flex-shrink:0"><svg viewBox="0 0 24 24" fill="none"
-              stroke="var(--orange)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg></div>
-          <div>
-            <div class="gtm-title">Strategic Partnerships</div>
-            <div class="gtm-desc">Co-selling with <strong>AWS/Azure/GCP</strong> &amp; Tier-1 System Integrators to tap
-              into existing multi-million dollar enterprise budgets.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="lbl rv" style="animation-delay:320ms;margin-top:1.5rem">The Scaling Roadmap: 2026&ndash;2028</div>
-      <table class="roadmap-table rv" style="animation-delay:360ms">
-        <thead>
-          <tr>
-            <th>Scaling Pillar</th>
-            <th><span class="phase-tag phase-1">PHASE 1</span> Foundation ($1M)</th>
-            <th><span class="phase-tag phase-2">PHASE 2</span> Growth ($3M&ndash;$5M)</th>
-            <th><span class="phase-tag phase-3">PHASE 3</span> Scale ($10M)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Team Size</td>
-            <td>15 (R&amp;D Focused)</td>
-            <td>40 (Balanced)</td>
-            <td>80+ (GTM &amp; Delivery)</td>
-          </tr>
-          <tr>
-            <td>Marketing</td>
-            <td>Product Validation</td>
-            <td>Content/Authority Lead Gen</td>
-            <td>Partner-led / ABM</td>
-          </tr>
-          <tr>
-            <td>Sales</td>
-            <td>Founder-led Sales</td>
-            <td>Field Sales &amp; Pre-sales</td>
-            <td>Global Channel Partners</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
 
     <!-- ═══ SLIDE 8: CLOSING ═══ -->
     <!-- ═══ SLIDE 8: CALL CENTER MARKET ═══ -->
-    <section class="slide" data-slide="8">
+    <section class="slide" data-slide="7">
       <img src="assets/ai-network.png" class="bg-img" style="opacity:.07" alt="">
       <div class="lbl rv">Market Context</div>
-      <h2 class="ttl rv" style="animation-delay:80ms">Massive Call Center Market <span class="hl">Ready for AI</span></h2>
+      <h2 class="ttl rv" style="animation-delay:80ms">Massive Call Center Market <span class="hl">Ready for AI</span>
+      </h2>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:1rem" class="rv" style="animation-delay:120ms">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:1rem" class="rv"
+        style="animation-delay:120ms">
         <!-- Left column -->
         <div>
-          <div style="background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);border-radius:.75rem;padding:1.25rem;margin-bottom:1rem">
-            <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:700;margin-bottom:.5rem">India Call Center Scale</div>
+          <div
+            style="background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);border-radius:.75rem;padding:1.25rem;margin-bottom:1rem">
+            <div
+              style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:700;margin-bottom:.5rem">
+              India Call Center Scale</div>
             <div style="font-size:2.2rem;font-weight:800;color:var(--t9);line-height:1">$50B</div>
-            <div style="font-size:.78rem;color:var(--t7);margin-top:.25rem">Indian BPO / call center industry (2024)</div>
+            <div style="font-size:.78rem;color:var(--t7);margin-top:.25rem">Indian BPO / call center industry (2024)
+            </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem">
               <div style="text-align:center;padding:.5rem;background:rgba(37,99,235,.05);border-radius:.5rem">
                 <div style="font-size:1.1rem;font-weight:800;color:var(--t9)">2&ndash;2.5M</div>
@@ -3460,37 +3352,53 @@
                 <div style="font-size:.7rem;color:var(--t7)">Calls / Day</div>
               </div>
             </div>
-            <div style="text-align:center;padding:.4rem;background:rgba(37,99,235,.05);border-radius:.5rem;margin-top:.5rem">
+            <div
+              style="text-align:center;padding:.4rem;background:rgba(37,99,235,.05);border-radius:.5rem;margin-top:.5rem">
               <div style="font-size:1.1rem;font-weight:800;color:var(--t9)">55&ndash;90B</div>
               <div style="font-size:.7rem;color:var(--t7)">Calls Annually Across Industries</div>
             </div>
           </div>
 
-          <div style="background:rgba(13,148,136,.08);border:1px solid rgba(13,148,136,.2);border-radius:.75rem;padding:1rem">
-            <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);font-weight:700;margin-bottom:.5rem">Market Growth</div>
+          <div
+            style="background:rgba(13,148,136,.08);border:1px solid rgba(13,148,136,.2);border-radius:.75rem;padding:1rem">
+            <div
+              style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);font-weight:700;margin-bottom:.5rem">
+              Market Growth</div>
             <div style="display:flex;align-items:baseline;gap:.5rem">
               <div style="font-size:1.6rem;font-weight:800;color:var(--t9)">$139B</div>
               <div style="font-size:.75rem;color:var(--t7)">projected by 2033</div>
             </div>
-            <div style="margin-top:.35rem;font-size:.75rem;color:var(--t7)">~12&ndash;13% CAGR driven by digital CX demand</div>
+            <div style="margin-top:.35rem;font-size:.75rem;color:var(--t7)">~12&ndash;13% CAGR driven by digital CX
+              demand</div>
           </div>
         </div>
 
         <!-- Right column -->
         <div>
-          <div style="background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);border-radius:.75rem;padding:1.25rem;margin-bottom:1rem">
-            <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);font-weight:700;margin-bottom:.6rem">High-Volume Repetitive Workflows</div>
+          <div
+            style="background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);border-radius:.75rem;padding:1.25rem;margin-bottom:1rem">
+            <div
+              style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);font-weight:700;margin-bottom:.6rem">
+              High-Volume Repetitive Workflows</div>
             <div style="display:flex;flex-direction:column;gap:.4rem">
-              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span style="color:var(--purple)">&#9656;</span> Customer verification &amp; onboarding</div>
-              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span style="color:var(--purple)">&#9656;</span> Payment reminders &amp; collections</div>
-              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span style="color:var(--purple)">&#9656;</span> Surveys &amp; feedback programs</div>
-              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span style="color:var(--purple)">&#9656;</span> Appointment confirmations &amp; reminders</div>
-              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span style="color:var(--purple)">&#9656;</span> Lead qualification &amp; outbound outreach</div>
+              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span
+                  style="color:var(--purple)">&#9656;</span> Customer verification &amp; onboarding</div>
+              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span
+                  style="color:var(--purple)">&#9656;</span> Payment reminders &amp; collections</div>
+              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span
+                  style="color:var(--purple)">&#9656;</span> Surveys &amp; feedback programs</div>
+              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span
+                  style="color:var(--purple)">&#9656;</span> Appointment confirmations &amp; reminders</div>
+              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span
+                  style="color:var(--purple)">&#9656;</span> Lead qualification &amp; outbound outreach</div>
             </div>
           </div>
 
-          <div style="background:rgba(234,88,12,.08);border:1px solid rgba(234,88,12,.2);border-radius:.75rem;padding:1.25rem">
-            <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--orange);font-weight:700;margin-bottom:.5rem">Automation Opportunity</div>
+          <div
+            style="background:rgba(234,88,12,.08);border:1px solid rgba(234,88,12,.2);border-radius:.75rem;padding:1.25rem">
+            <div
+              style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--orange);font-weight:700;margin-bottom:.5rem">
+              Automation Opportunity</div>
             <div style="display:flex;align-items:baseline;gap:.5rem;margin-bottom:.25rem">
               <div style="font-size:1.8rem;font-weight:800;color:var(--orange)">30&ndash;40%</div>
               <div style="font-size:.78rem;color:var(--t9)">of calls are repetitive &amp; automatable</div>
@@ -3499,48 +3407,63 @@
               <div style="font-size:1.4rem;font-weight:800;color:var(--t9)">~25B</div>
               <div style="font-size:.78rem;color:var(--t9)">automatable calls annually in India</div>
             </div>
-            <div style="margin-top:.75rem;padding-top:.5rem;border-top:1px solid rgba(234,88,12,.15);font-size:.75rem;color:var(--t7);font-style:italic">As call volumes grow, AI automation scales alongside the market</div>
+            <div
+              style="margin-top:.75rem;padding-top:.5rem;border-top:1px solid rgba(234,88,12,.15);font-size:.75rem;color:var(--t7);font-style:italic">
+              As call volumes grow, AI automation scales alongside the market</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ═══ SLIDE 9: AI VOICE AGENT ECONOMICS ═══ -->
-    <section class="slide" data-slide="9">
+    <section class="slide" data-slide="8">
       <img src="assets/ai-network.png" class="bg-img" style="opacity:.07" alt="">
       <div class="lbl rv">Unit Economics</div>
-      <h2 class="ttl rv" style="animation-delay:80ms">AI Voice Agents Transform <span class="hl">Call Center Economics</span></h2>
+      <h2 class="ttl rv" style="animation-delay:80ms">AI Voice Agents Transform <span class="hl">Call Center
+          Economics</span></h2>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:1rem" class="rv" style="animation-delay:120ms">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:1rem" class="rv"
+        style="animation-delay:120ms">
         <!-- Left: Traditional vs AI comparison -->
         <div>
-          <div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:.75rem;padding:1.25rem;margin-bottom:1rem">
-            <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--red);font-weight:700;margin-bottom:.6rem">Traditional Call Centers</div>
+          <div
+            style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:.75rem;padding:1.25rem;margin-bottom:1rem">
+            <div
+              style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--red);font-weight:700;margin-bottom:.6rem">
+              Traditional Call Centers</div>
             <div style="display:flex;flex-direction:column;gap:.5rem">
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .6rem;background:rgba(239,68,68,.04);border-radius:.4rem">
+              <div
+                style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .6rem;background:rgba(239,68,68,.04);border-radius:.4rem">
                 <span style="font-size:.78rem;color:var(--t9)">Cost per Agent / Month</span>
                 <span style="font-size:.95rem;font-weight:700;color:var(--red)">₹50K&ndash;70K</span>
               </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .6rem;background:rgba(239,68,68,.04);border-radius:.4rem">
+              <div
+                style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .6rem;background:rgba(239,68,68,.04);border-radius:.4rem">
                 <span style="font-size:.78rem;color:var(--t9)">Cost per Call</span>
                 <span style="font-size:.95rem;font-weight:700;color:var(--red)">₹35&ndash;80</span>
               </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .6rem;background:rgba(239,68,68,.04);border-radius:.4rem">
+              <div
+                style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .6rem;background:rgba(239,68,68,.04);border-radius:.4rem">
                 <span style="font-size:.78rem;color:var(--t9)">Operations</span>
                 <span style="font-size:.78rem;font-weight:600;color:var(--t9)">8&ndash;9 hrs / day</span>
               </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .6rem;background:rgba(239,68,68,.04);border-radius:.4rem">
+              <div
+                style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .6rem;background:rgba(239,68,68,.04);border-radius:.4rem">
                 <span style="font-size:.78rem;color:var(--t9)">Scaling</span>
                 <span style="font-size:.78rem;font-weight:600;color:var(--t9)">Hire + Train + Infra</span>
               </div>
             </div>
           </div>
 
-          <div style="background:rgba(13,148,136,.08);border:1px solid rgba(13,148,136,.2);border-radius:.75rem;padding:1.25rem">
-            <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);font-weight:700;margin-bottom:.6rem">AI Voice Agents</div>
+          <div
+            style="background:rgba(13,148,136,.08);border:1px solid rgba(13,148,136,.2);border-radius:.75rem;padding:1.25rem">
+            <div
+              style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);font-weight:700;margin-bottom:.6rem">
+              AI Voice Agents</div>
             <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.5rem">
               <div style="font-size:2.4rem;font-weight:800;color:var(--teal)">₹5</div>
-              <div style="font-size:.85rem;color:var(--t9);line-height:1.3">per automated call<br><strong style="color:var(--teal)">80&ndash;90% cost reduction</strong></div>
+              <div style="font-size:.85rem;color:var(--t9);line-height:1.3">per automated call<br><strong
+                  style="color:var(--teal)">80&ndash;90% cost reduction</strong></div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
               <div style="text-align:center;padding:.4rem;background:rgba(13,148,136,.06);border-radius:.4rem">
@@ -3557,18 +3480,28 @@
 
         <!-- Right: Capabilities + Market -->
         <div>
-          <div style="background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);border-radius:.75rem;padding:1.25rem;margin-bottom:1rem">
-            <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:700;margin-bottom:.6rem">Enterprise-Grade Capabilities</div>
+          <div
+            style="background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);border-radius:.75rem;padding:1.25rem;margin-bottom:1rem">
+            <div
+              style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:700;margin-bottom:.6rem">
+              Enterprise-Grade Capabilities</div>
             <div style="display:flex;flex-direction:column;gap:.45rem">
-              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span style="color:var(--blue)">&#10003;</span> Multi-language voice (Indian + global)</div>
-              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span style="color:var(--blue)">&#10003;</span> Plug-and-play with existing CRM / dialers</div>
-              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span style="color:var(--blue)">&#10003;</span> Scale up or down instantly per campaign</div>
-              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span style="color:var(--blue)">&#10003;</span> Handle millions of calls without workforce</div>
+              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span
+                  style="color:var(--blue)">&#10003;</span> Multi-language voice (Indian + global)</div>
+              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span
+                  style="color:var(--blue)">&#10003;</span> Plug-and-play with existing CRM / dialers</div>
+              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span
+                  style="color:var(--blue)">&#10003;</span> Scale up or down instantly per campaign</div>
+              <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--t9)"><span
+                  style="color:var(--blue)">&#10003;</span> Handle millions of calls without workforce</div>
             </div>
           </div>
 
-          <div style="background:rgba(234,88,12,.08);border:1px solid rgba(234,88,12,.2);border-radius:.75rem;padding:1.25rem">
-            <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--orange);font-weight:700;margin-bottom:.5rem">Market Opportunity</div>
+          <div
+            style="background:rgba(234,88,12,.08);border:1px solid rgba(234,88,12,.2);border-radius:.75rem;padding:1.25rem">
+            <div
+              style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--orange);font-weight:700;margin-bottom:.5rem">
+              Market Opportunity</div>
             <div style="display:flex;align-items:baseline;gap:.5rem;margin-bottom:.2rem">
               <div style="font-size:1.1rem;font-weight:800;color:var(--t9)">25B</div>
               <div style="font-size:.78rem;color:var(--t9)">automatable calls / year in India</div>
@@ -3581,14 +3514,16 @@
                 <div style="font-size:.7rem;color:var(--t7)">AI Voice Automation Market</div>
               </div>
             </div>
-            <div style="padding-top:.5rem;border-top:1px solid rgba(234,88,12,.15);font-size:.75rem;color:var(--t7);font-style:italic">With BPO growth &amp; CX automation adoption, AI voice becomes a multi-billion dollar global market</div>
+            <div
+              style="padding-top:.5rem;border-top:1px solid rgba(234,88,12,.15);font-size:.75rem;color:var(--t7);font-style:italic">
+              With BPO growth &amp; CX automation adoption, AI voice becomes a multi-billion dollar global market</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ═══ SLIDE 10: CLOSING ═══ -->
-    <section class="slide closing" data-slide="10">
+    <section class="slide closing" data-slide="9">
       <img src="assets/closing-bg.png" class="bg-img" alt="">
       <div class="cls-overlay"></div>
       <div class="cls-content">
