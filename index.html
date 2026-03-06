@@ -695,17 +695,51 @@
       font-weight: 500
     }
 
-    .about-stats {
-      display: flex;
-      gap: 2rem;
-      margin-top: 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--bdr)
+    .client-logos {
+      width: 100%;
+      margin-top: .75rem;
+      padding-top: .75rem;
+      border-top: 1px solid var(--bdr);
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)
     }
 
-    .about-stat {
+    .client-logos-track {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      width: max-content;
+      min-height: 40px;
+      animation: scroll-logos 20s linear infinite
+    }
+
+    .client-logos-track:hover {
+      animation-play-state: paused
+    }
+
+    .client-logos-track img {
+      height: 28px;
+      min-width: 50px;
+      width: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+      display: block
+    }
+
+    @keyframes scroll-logos {
+      0% { transform: translateX(0) }
+      100% { transform: translateX(-50%) }
+    }
+
+    .client-logos-label {
       text-align: center;
-      flex: 1
+      font-size: .65rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--txt-m);
+      margin-bottom: .5rem
     }
 
     .about-img {
@@ -2783,26 +2817,28 @@
         </div>
       </div>
 
-      <div class="about-stats rv" style="animation-delay:400ms">
-        <div class="about-stat">
-          <div class="stat-num cu" data-t="10">0</div>
-          <div class="stat-label">Yrs in Production</div>
-        </div>
-        <div class="about-stat">
-          <div class="stat-num cu" data-t="3">0</div>
-          <div class="stat-label">Continents Served</div>
-        </div>
-        <div class="about-stat">
-          <div class="stat-num">15M</div>
-          <div class="stat-label">Txns/Day</div>
-        </div>
-        <div class="about-stat">
-          <div class="stat-num">15+</div>
-          <div class="stat-label">Enterprise Clients</div>
-        </div>
-        <div class="about-stat">
-          <div class="stat-num cu" data-t="8">0</div>
-          <div class="stat-label">Countries Deployed</div>
+      <div class="client-logos rv" style="animation-delay:400ms">
+        <div class="client-logos-label">Trusted By</div>
+        <div class="client-logos-track">
+          <img src="Logos/Logos/Customers/SymphonyAILogo.jpg" alt="SymphonyAI">
+          <img src="Logos/Logos/Customers/Zenatix_ShneiderElectric.jpg" alt="Zenatix Schneider Electric">
+          <img src="Logos/Logos/Customers/FCIimage-28.webp" alt="FCI">
+          <img src="Logos/Logos/Customers/LTM-Logo.svg" alt="LTM">
+          <img src="Logos/Logos/Customers/ESQKinective.svg" alt="ESQ Kinective">
+          <img src="Logos/Logos/Customers/Ensaras.png" alt="Ensaras">
+          <img src="Logos/Logos/Customers/Varanasi_SmartCitylogo.png" alt="Varanasi Smart City">
+          <img src="Logos/Logos/Customers/Bangladesh_Post_Office_logo.svg.png" alt="Bangladesh Post Office">
+          <img src="Logos/Logos/Customers/lPB_ogo-color.svg" alt="LPB">
+          <!-- duplicate set for seamless loop -->
+          <img src="Logos/Logos/Customers/SymphonyAILogo.jpg" alt="SymphonyAI">
+          <img src="Logos/Logos/Customers/Zenatix_ShneiderElectric.jpg" alt="Zenatix Schneider Electric">
+          <img src="Logos/Logos/Customers/FCIimage-28.webp" alt="FCI">
+          <img src="Logos/Logos/Customers/LTM-Logo.svg" alt="LTM">
+          <img src="Logos/Logos/Customers/ESQKinective.svg" alt="ESQ Kinective">
+          <img src="Logos/Logos/Customers/Ensaras.png" alt="Ensaras">
+          <img src="Logos/Logos/Customers/Varanasi_SmartCitylogo.png" alt="Varanasi Smart City">
+          <img src="Logos/Logos/Customers/Bangladesh_Post_Office_logo.svg.png" alt="Bangladesh Post Office">
+          <img src="Logos/Logos/Customers/lPB_ogo-color.svg" alt="LPB">
         </div>
       </div>
     </section>
@@ -3120,7 +3156,34 @@
           <div class="future-desc">AI-verified document workflows with digital signatures</div>
         </div>
       </div>
-      <div class="slide-tagline rv" style="animation-delay:440ms">Autonomous Intelligence, Secured by Design.</div>
+      <div class="client-logos rv" style="animation-delay:440ms;margin-top:auto">
+        <div class="client-logos-label">Trusted By Leading Enterprises</div>
+        <div class="client-logos-track">
+          <img src="Logos/Logos/Boliye/HDFC_Life_Logo.svg" alt="HDFC Life">
+          <img src="Logos/Logos/Boliye/Hero_MotoCorp.svg" alt="Hero MotoCorp">
+          <img src="Logos/Logos/Boliye/lic_log_updated%20(1).svg" alt="LIC">
+          <img src="Logos/Logos/Boliye/sbi-life-seeklogo.png" alt="SBI Life">
+          <img src="Logos/Logos/Boliye/igl-logo.png" alt="IGL">
+          <img src="Logos/Logos/Boliye/IndiaFirst_logo%20(10).png" alt="IndiaFirst">
+          <img src="Logos/Logos/Boliye/bobcard-logo.svg" alt="BOB Card">
+          <img src="Logos/Logos/Boliye/Khatabook.svg" alt="Khatabook">
+          <img src="Logos/Logos/Boliye/VIP.png" alt="VIP">
+          <img src="Logos/Logos/Boliye/richa-global-logo.svg" alt="Richa Global">
+          <img src="Logos/Logos/Boliye/creditmantri_vertical.jpg" alt="CreditMantri">
+          <!-- duplicate for seamless loop -->
+          <img src="Logos/Logos/Boliye/HDFC_Life_Logo.svg" alt="HDFC Life">
+          <img src="Logos/Logos/Boliye/Hero_MotoCorp.svg" alt="Hero MotoCorp">
+          <img src="Logos/Logos/Boliye/lic_log_updated%20(1).svg" alt="LIC">
+          <img src="Logos/Logos/Boliye/sbi-life-seeklogo.png" alt="SBI Life">
+          <img src="Logos/Logos/Boliye/igl-logo.png" alt="IGL">
+          <img src="Logos/Logos/Boliye/IndiaFirst_logo%20(10).png" alt="IndiaFirst">
+          <img src="Logos/Logos/Boliye/bobcard-logo.svg" alt="BOB Card">
+          <img src="Logos/Logos/Boliye/Khatabook.svg" alt="Khatabook">
+          <img src="Logos/Logos/Boliye/VIP.png" alt="VIP">
+          <img src="Logos/Logos/Boliye/richa-global-logo.svg" alt="Richa Global">
+          <img src="Logos/Logos/Boliye/creditmantri_vertical.jpg" alt="CreditMantri">
+        </div>
+      </div>
     </section>
 
     <!-- ═══ SLIDE 5: THE LIBERIN ENGINE ═══ -->
