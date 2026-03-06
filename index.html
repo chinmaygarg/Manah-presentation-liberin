@@ -287,38 +287,24 @@
       filter: saturate(.7)
     }
 
-    .cover-grid {
-      display: grid;
-      grid-template-columns: 55fr 45fr;
-      height: 100%;
+    .cover-center {
       position: relative;
-      z-index: 2
-    }
-
-    .cover-left {
+      z-index: 2;
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: center;
-      padding: 5rem 4vw 5rem 6vw;
-      position: relative
-    }
-
-    .cover-left::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 8%;
-      bottom: 8%;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, .12), transparent)
+      flex: 1;
+      text-align: center;
+      padding: 3rem 6vw;
+      height: 100%
     }
 
     .c-logo-img {
       height: 52px;
       width: auto;
       margin-bottom: .5rem;
-      filter: brightness(0) invert(1);
-      opacity: .92
+      filter: drop-shadow(0 0 0 rgba(255,255,255,.9)) drop-shadow(1px 0 0 rgba(255,255,255,.5)) drop-shadow(-1px 0 0 rgba(255,255,255,.5)) drop-shadow(0 1px 0 rgba(255,255,255,.5)) drop-shadow(0 -1px 0 rgba(255,255,255,.5))
     }
 
     .c-logo {
@@ -338,7 +324,8 @@
       line-height: 1.05;
       letter-spacing: -.03em;
       color: #fff;
-      margin-bottom: 1.25rem
+      margin-bottom: 1.5rem;
+      text-align: center
     }
 
     .c-h1 .hl {
@@ -352,8 +339,9 @@
       font-size: clamp(1rem, 1.5vw, 1.3rem);
       color: rgba(255, 255, 255, .5);
       line-height: 1.6;
-      max-width: 38ch;
-      margin-bottom: 3rem
+      max-width: 50ch;
+      margin-bottom: 3rem;
+      text-align: center
     }
 
     .c-badges {
@@ -400,85 +388,36 @@
       font-weight: 600
     }
 
-    .cover-right {
-      position: relative;
+    .c-cert-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      padding: 3rem 2.5rem
+      gap: 1.5rem;
+      margin-top: 2rem
     }
 
-    .cover-right::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(37, 99, 235, .06), rgba(13, 148, 136, .04));
-      z-index: 1
-    }
-
-    .c-logos-section {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem
-    }
-
-    .c-logos-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .7rem;
-      font-weight: 500;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .3);
-      text-align: center
-    }
-
-    .c-logos-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: .65rem;
-      width: 100%
-    }
-
-    .c-logo-card {
+    .c-cert-badge {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: .7rem .5rem;
-      background: rgba(255, 255, 255, .92);
-      border: 1px solid rgba(255, 255, 255, .15);
-      border-radius: 10px;
+      padding: .8rem 1.2rem;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 12px;
       backdrop-filter: blur(12px);
-      transition: all .35s var(--ease);
-      min-height: 52px
+      transition: all .35s var(--ease)
     }
 
-    .c-logo-card:hover {
-      background: rgba(255, 255, 255, 1);
+    .c-cert-badge:hover {
+      background: rgba(255, 255, 255, .12);
       border-color: rgba(96, 165, 250, .3);
       transform: translateY(-2px)
     }
 
-    .c-logo-card img {
-      max-height: 32px;
-      max-width: 100%;
-      object-fit: contain;
-      opacity: .85;
-      transition: opacity .3s ease
-    }
-
-    .c-logo-card:hover img {
-      opacity: 1
-    }
-
-    .c-logos-divider {
-      width: 60%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .1), transparent)
+    .c-cert-badge img {
+      height: 44px;
+      width: auto;
+      object-fit: contain
     }
 
     .c-orb {
@@ -2550,16 +2489,13 @@
         display: none
       }
 
-      .cover-grid {
-        grid-template-columns: 1fr
+      .cover-center {
+        padding: 2rem 4vw
       }
 
-      .cover-right {
-        display: none
-      }
-
-      .cover-left {
-        padding: 3rem 4vw
+      .c-cert-row {
+        flex-wrap: wrap;
+        gap: 1rem
       }
 
       .milestones {
@@ -2663,53 +2599,23 @@
     <!-- ═══ SLIDE 0: COVER ═══ -->
     <section class="slide cover active" data-slide="0">
       <img src="assets/cover-abstract.png" class="bg-img" alt="">
-      <div class="cover-grid">
-        <div class="cover-left">
-          <div class="rv" style="display:flex;align-items:baseline;gap:.6rem;margin-bottom:2rem">
-            <img src="assets/liberin-logo.png" class="c-logo-img" alt="Liberin">
-            <span class="c-logo"
-              style="margin-bottom:0;font-size:.75rem;letter-spacing:.3em;color:rgba(255,255,255,.45)">Technologies</span>
-          </div>
-          <h1 class="c-h1 rv" style="animation-delay:80ms">The AI Backbone of the<br><span class="hl">Modern
-              Enterprise</span></h1>
+      <div class="c-orb c-orb-1"></div>
+      <div class="c-orb c-orb-2"></div>
+      <div class="c-orb c-orb-3"></div>
+      <div class="cover-center">
+        <div class="rv" style="display:flex;align-items:baseline;gap:.6rem;margin-bottom:2rem;justify-content:center">
+          <img src="assets/liberin-logo.png" class="c-logo-img" alt="Liberin">
+          <span class="c-logo"
+            style="margin-bottom:0;font-size:.75rem;letter-spacing:.3em;color:rgba(255,255,255,.45)">Technologies</span>
         </div>
-        <div class="cover-right">
-          <div class="c-orb c-orb-1"></div>
-          <div class="c-orb c-orb-2"></div>
-          <div class="c-orb c-orb-3"></div>
-          <div class="c-logos-section">
-            <div class="c-logos-label">Trusted By Industry Leaders</div>
-            <div class="c-logos-grid">
-              <div class="c-logo-card"><img src="assets/logos/HDFC_Life_Logo.svg" alt="HDFC Life"></div>
-              <div class="c-logo-card"><img src="assets/logos/Hero_MotoCorp.svg" alt="Hero MotoCorp"></div>
-              <div class="c-logo-card"><img src="assets/logos/sbi-life-seeklogo.png" alt="SBI Life"></div>
-              <div class="c-logo-card"><img src="assets/logos/lic_log_updated (1).svg" alt="LIC"></div>
-              <div class="c-logo-card"><img src="assets/logos/VIP.png" alt="VIP"></div>
-              <div class="c-logo-card"><img src="assets/logos/igl-logo.png" alt="IGL"></div>
-              <div class="c-logo-card"><img src="assets/logos/IndiaFirst_logo (10).png" alt="IndiaFirst Life"></div>
-              <div class="c-logo-card"><img src="assets/logos/Khatabook.svg" alt="Khatabook"></div>
-              <div class="c-logo-card"><img src="assets/logos/bobcard-logo.svg" alt="BOB Card"></div>
-              <div class="c-logo-card"><img src="assets/logos/creditmantri_vertical.jpg" alt="CreditMantri"></div>
-              <div class="c-logo-card"><img src="assets/logos/richa-global-logo.svg" alt="Richa Global"></div>
-              <div class="c-logo-card"><img src="assets/logos/cm-logo-white.webp" alt="CM"></div>
-            </div>
-            <div class="c-logos-divider"></div>
-            <div class="c-logos-label">Enterprise Customers</div>
-            <div class="c-logos-grid">
-              <div class="c-logo-card"><img src="assets/logos/LTM-Logo.svg" alt="L&T Mindtree"></div>
-              <div class="c-logo-card"><img src="assets/logos/SymphonyAILogo.jpg" alt="SymphonyAI"></div>
-              <div class="c-logo-card"><img src="assets/logos/ESQKinective.svg" alt="ESQ Kinective"></div>
-              <div class="c-logo-card"><img src="assets/logos/Ensaras.png" alt="Ensaras"></div>
-              <div class="c-logo-card"><img src="assets/logos/Varanasi_SmartCitylogo.png" alt="Varanasi Smart City">
-              </div>
-              <div class="c-logo-card"><img src="assets/logos/Zenatix_ShneiderElectric.jpg"
-                  alt="Zenatix Schneider Electric"></div>
-              <div class="c-logo-card"><img src="assets/logos/FCIimage-28.webp" alt="FCI"></div>
-              <div class="c-logo-card"><img src="assets/logos/Bangladesh_Post_Office_logo.svg.png"
-                  alt="Bangladesh Post Office"></div>
-              <div class="c-logo-card"><img src="assets/logos/lPB_ogo-color.svg" alt="LPB"></div>
-            </div>
-          </div>
+        <h1 class="c-h1 rv" style="animation-delay:80ms">The AI Backbone of the<br><span class="hl">Modern
+            Enterprise</span></h1>
+        <p class="c-sub rv" style="animation-delay:160ms">Powering intelligent automation for enterprises across the globe</p>
+        <div class="c-cert-row rv" style="animation-delay:240ms">
+          <div class="c-cert-badge"><img src="Logos/Cert%20Logos/cmmi%203.png" alt="CMMI Level 3"></div>
+          <div class="c-cert-badge"><img src="Logos/Cert%20Logos/iso%209001.png" alt="ISO 9001"></div>
+          <div class="c-cert-badge"><img src="Logos/Cert%20Logos/iso%2027001.png" alt="ISO 27001"></div>
+          <div class="c-cert-badge"><img src="Logos/Cert%20Logos/iso%2020001-1_2018.png" alt="ISO 20000-1:2018"></div>
         </div>
       </div>
       <div class="c-hint">Press &rarr; or click to begin</div>
