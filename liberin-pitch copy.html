@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberin Technologies — Investor Pitch 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --blue:#2563eb;--blue-l:#eff6ff;--blue-d:#1d4ed8;--blue-glow:rgba(37,99,235,.12);
+  --teal:#0d9488;--teal-l:#f0fdfa;--teal-glow:rgba(13,148,136,.08);
+  --bg:#fafbfe;--bg2:#f1f5f9;--card:#fff;
+  --bdr:#e2e8f0;--bdr-l:#f1f5f9;
+  --t9:#0f172a;--t7:#334155;--t5:#64748b;--t4:#94a3b8;--t3:#cbd5e1;
+  --purple:#7c3aed;--orange:#ea580c;--red:#dc2626;
+  --sh-s:0 1px 3px rgba(0,0,0,.04),0 1px 2px rgba(0,0,0,.03);
+  --sh-m:0 4px 20px rgba(0,0,0,.07),0 2px 6px rgba(0,0,0,.04);
+  --sh-l:0 16px 48px rgba(0,0,0,.1),0 4px 12px rgba(0,0,0,.05);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t7);font-family:'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+/* ═══ PROGRESS BAR ═══ */
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--teal));z-index:200;transition:width .5s var(--ease);will-change:width}
+
+/* ═══ DECK ═══ */
+.deck{width:100vw;height:100vh;position:relative;overflow:hidden}
+
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:5vh 6vw 56px;opacity:0;visibility:hidden;transform:translateY(24px);transition:opacity .55s var(--ease),transform .55s var(--ease),visibility 0s .55s;background:var(--bg);will-change:transform,opacity;overflow:hidden}
+.slide.active{opacity:1;visibility:visible;transform:translateY(0);transition-delay:0s}
+
+/* ═══ REVEAL ANIMATIONS ═══ */
+.rv{opacity:0;transform:translateY(18px);animation:none}
+.slide.active .rv{animation:reveal .7s var(--ease) forwards}
+@keyframes reveal{to{opacity:1;transform:translateY(0)}}
+
+/* ═══ TYPOGRAPHY ═══ */
+.lbl{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem}
+.ttl{font-family:'Poppins',sans-serif;font-size:clamp(2.4rem,5vw,4.5rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;color:var(--t9);margin-bottom:1.25rem}
+.ttl .hl{background:linear-gradient(135deg,var(--blue),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sub{font-size:clamp(1.1rem,1.8vw,1.5rem);color:var(--t5);line-height:1.55;max-width:52ch}
+
+/* ═══ LAYOUT HELPERS ═══ */
+.split{display:grid;gap:4rem;align-items:center;height:100%}
+.split-55-45{grid-template-columns:55fr 45fr}
+.split-50-50{grid-template-columns:1fr 1fr}
+.split-45-55{grid-template-columns:45fr 55fr}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+
+/* ═══ STAT NUMBERS ═══ */
+.stat-num{font-family:'Poppins',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:800;line-height:1;background:linear-gradient(135deg,var(--blue),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:.85rem;color:var(--t5);margin-top:.35rem}
+.stat-bar{width:48px;height:3px;border-radius:2px;margin-top:.5rem}
+
+/* ═══ CARDS ═══ */
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:16px;overflow:hidden;transition:all .35s var(--ease)}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh-l);border-color:var(--blue)}
+
+/* ═══ ICON DOT ═══ */
+.ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+
+/* ═══ BACKGROUND IMAGES ═══ */
+.bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+
+/* ═══ QUOTE ═══ */
+.qt{font-family:'Poppins',sans-serif;font-style:italic;font-size:1rem;color:var(--t5);border-left:3px solid var(--teal);padding-left:1.25rem;line-height:1.6}
+
+/* ═══════════════════════════════════
+   SLIDE 0: COVER
+   ═══════════════════════════════════ */
+.cover{padding:0 0 56px;background:#0f172a;overflow:hidden}
+.cover .bg-img{opacity:.2;filter:saturate(.7)}
+
+.cover-grid{display:grid;grid-template-columns:55fr 45fr;height:100%;position:relative;z-index:2}
+
+.cover-left{display:flex;flex-direction:column;justify-content:center;padding:5rem 4vw 5rem 6vw;position:relative}
+.cover-left::after{content:'';position:absolute;right:0;top:8%;bottom:8%;width:1px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.12),transparent)}
+
+.c-logo{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:2.5rem}
+
+.c-h1{font-family:'Poppins',sans-serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:800;line-height:1.05;letter-spacing:-.03em;color:#fff;margin-bottom:1.25rem}
+.c-h1 .hl{background:linear-gradient(135deg,#60a5fa,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.c-sub{font-size:clamp(1rem,1.5vw,1.3rem);color:rgba(255,255,255,.5);line-height:1.6;max-width:38ch;margin-bottom:3rem}
+
+.c-badges{display:flex;flex-wrap:wrap;gap:.75rem}
+.c-badge{display:flex;align-items:center;gap:.7rem;padding:.65rem 1.1rem;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(255,255,255,.03);backdrop-filter:blur(16px);transition:all .35s var(--ease)}
+.c-badge:hover{border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.06)}
+.c-badge-ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;background:linear-gradient(135deg,rgba(96,165,250,.15),rgba(45,212,191,.15))}
+.c-badge-text{font-size:.8rem;color:rgba(255,255,255,.6)}
+.c-badge-text strong{color:#fff;font-weight:600}
+
+.cover-right{position:relative;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.cover-right::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(37,99,235,.06),rgba(13,148,136,.04));z-index:1}
+.c-person{position:absolute;bottom:0;right:4%;height:88%;object-fit:contain;z-index:3;filter:brightness(1.08)}
+.c-person-2{position:absolute;bottom:0;left:6%;height:78%;object-fit:contain;z-index:2;opacity:.65;filter:brightness(1.05)}
+
+.c-orb{position:absolute;border-radius:50%;z-index:1;animation:float 7s ease-in-out infinite}
+.c-orb-1{width:240px;height:240px;background:radial-gradient(circle,rgba(96,165,250,.14),transparent 70%);top:8%;left:8%;animation-delay:0s}
+.c-orb-2{width:180px;height:180px;background:radial-gradient(circle,rgba(45,212,191,.1),transparent 70%);bottom:18%;right:15%;animation-delay:2.5s}
+.c-orb-3{width:120px;height:120px;background:radial-gradient(circle,rgba(124,58,237,.08),transparent 70%);top:35%;right:8%;animation-delay:4.5s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+
+.c-hint{position:absolute;bottom:64px;left:50%;transform:translateX(-50%);z-index:10;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.2);letter-spacing:.2em;text-transform:uppercase;animation:pulse 2.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:.7}}
+
+/* ═══════════════════════════════════
+   SLIDE 1: ABOUT
+   ═══════════════════════════════════ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.client-item{padding:.85rem 0;border-bottom:1px solid var(--bdr-l)}
+.client-item:last-child{border:none}
+.ci-name{font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:var(--t9)}
+.ci-meta{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--blue);margin-top:.15rem;letter-spacing:.05em}
+.ci-desc{font-size:.85rem;color:var(--t5);margin-top:.2rem;line-height:1.45}
+.ci-tags{display:flex;gap:.4rem;margin-top:.4rem;flex-wrap:wrap}
+.ci-tag{font-size:.65rem;padding:.2rem .55rem;background:var(--blue-l);color:var(--blue-d);border-radius:5px;font-weight:500}
+
+.about-stats{display:flex;gap:2rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--bdr)}
+.about-stat{text-align:center;flex:1}
+
+.about-img{width:100%;height:200px;object-fit:cover;border-radius:16px;box-shadow:var(--sh-l)}
+
+/* ═══════════════════════════════════
+   SLIDE 2: OPPORTUNITY
+   ═══════════════════════════════════ */
+.mkt-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.5rem}
+.mkt-card{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:1.5rem;text-align:center;transition:all .35s var(--ease)}
+.mkt-card:hover{transform:translateY(-4px);box-shadow:var(--sh-l)}
+.mkt-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
+.mkt-from{font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:600;color:var(--t5);margin:.5rem 0 .15rem}
+.mkt-arrow{font-size:1.2rem;color:var(--teal)}
+.mkt-to{font-family:'Poppins',sans-serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;background:linear-gradient(135deg,var(--blue),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.mkt-cagr{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--teal);font-weight:600;margin-top:.4rem}
+
+/* ═══════════════════════════════════
+   SLIDE 3: TAILWINDS
+   ═══════════════════════════════════ */
+.tw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.tw-card{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:1.25rem;transition:all .35s var(--ease)}
+.tw-card:hover{transform:translateY(-4px);box-shadow:var(--sh-m);border-color:var(--blue)}
+.tw-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:.95rem;color:var(--t9);margin-top:.6rem}
+.tw-desc{font-size:.85rem;color:var(--t5);margin-top:.25rem;line-height:1.5}
+
+/* ═══════════════════════════════════
+   SLIDE 4: PRODUCTS
+   ═══════════════════════════════════ */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;flex:1;align-items:stretch}
+.prod-card{background:var(--card);border:1px solid var(--bdr);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:all .35s var(--ease)}
+.prod-card:hover{transform:translateY(-6px);box-shadow:var(--sh-l);border-color:transparent}
+.prod-img{width:100%;height:180px;object-fit:cover;display:block}
+.prod-body{padding:1.5rem;flex:1;display:flex;flex-direction:column}
+.prod-name{font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:800;color:var(--t9)}
+.prod-tag{font-size:.75rem;color:var(--teal);font-weight:600;margin-top:.15rem}
+.prod-desc{font-size:.9rem;color:var(--t5);margin-top:.6rem;line-height:1.5;flex:1}
+.prod-url{display:inline-block;margin-top:.8rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--blue-d);padding:.3rem .7rem;border:1px solid rgba(37,99,235,.2);border-radius:6px;transition:all .3s}
+.prod-url:hover{background:var(--blue-l);border-color:var(--blue)}
+
+/* ═══════════════════════════════════
+   SLIDE 5: PIPELINE
+   ═══════════════════════════════════ */
+.pipeline{display:flex;position:relative;margin:1.5rem 0}
+.pipe-stage{flex:1;text-align:center;padding:1.25rem .5rem;background:var(--card);border:1px solid var(--bdr);transition:all .35s var(--ease);position:relative}
+.pipe-stage:first-child{border-radius:14px 0 0 14px}
+.pipe-stage:last-child{border-radius:0 14px 14px 0}
+.pipe-stage:hover{background:var(--blue-l);border-color:var(--blue);z-index:3;transform:scaleY(1.04)}
+.pipe-num{font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:600;color:var(--teal);letter-spacing:.05em}
+.pipe-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:.8rem;color:var(--t9);margin-top:.25rem;line-height:1.2}
+.pipe-desc{font-size:.7rem;color:var(--t4);margin-top:.2rem;line-height:1.3}
+.pipe-arrow{position:absolute;right:-8px;top:50%;transform:translateY(-50%);width:16px;height:16px;z-index:4;color:var(--teal);font-size:.7rem;display:flex;align-items:center;justify-content:center}
+
+.diff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.diff-card{display:flex;gap:.75rem;align-items:flex-start;padding:1rem;background:var(--card);border:1px solid var(--bdr);border-radius:12px;transition:all .35s var(--ease)}
+.diff-card:hover{border-color:var(--teal);box-shadow:var(--sh-m)}
+.diff-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:.85rem;color:var(--teal)}
+.diff-desc{font-size:.8rem;color:var(--t5);margin-top:.15rem;line-height:1.4}
+
+/* ═══════════════════════════════════
+   SLIDE 6: TEAM
+   ═══════════════════════════════════ */
+.team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-bottom:1.5rem}
+.team-card{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:1.25rem;text-align:center;transition:all .35s var(--ease)}
+.team-card:hover{box-shadow:var(--sh-m);transform:translateY(-3px)}
+.team-avatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:800;font-size:1.15rem;margin:0 auto .6rem;color:#fff}
+.team-name{font-family:'Poppins',sans-serif;font-weight:700;font-size:.85rem;color:var(--t9)}
+.team-role{font-size:.7rem;color:var(--teal);font-weight:600;margin-top:.1rem}
+.team-bio{font-size:.7rem;color:var(--t4);margin-top:.35rem;line-height:1.35}
+
+.team-bottom{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.team-imgs{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.team-img{width:100%;height:140px;object-fit:cover;border-radius:14px;box-shadow:var(--sh-m)}
+
+/* ═══════════════════════════════════
+   SLIDE 7: TRACTION
+   ═══════════════════════════════════ */
+.traction-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:2rem}
+.traction-stat{text-align:center;padding:1.25rem;background:var(--card);border:1px solid var(--bdr);border-radius:14px;transition:all .35s var(--ease)}
+.traction-stat:hover{box-shadow:var(--sh-m);transform:translateY(-3px)}
+.ts-num{font-family:'Poppins',sans-serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:800;background:linear-gradient(135deg,var(--blue),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.ts-label{font-size:.85rem;color:var(--t5);margin-top:.4rem}
+
+.milestones{display:grid;grid-template-columns:1fr 1fr;gap:.5rem 2rem}
+.milestone{display:flex;align-items:center;gap:.75rem;padding:.65rem 0}
+.ms-check{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;color:#fff;font-size:.7rem;flex-shrink:0}
+.ms-text{font-size:.9rem;color:var(--t5);line-height:1.4}
+.ms-text strong{color:var(--t9);font-weight:600}
+
+/* ═══════════════════════════════════
+   SLIDE 8: INDIA
+   ═══════════════════════════════════ */
+.india-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:2rem}
+.india-stat{text-align:center;padding:1.5rem 1rem;background:var(--card);border:1px solid var(--bdr);border-radius:14px;transition:all .35s var(--ease)}
+.india-stat:hover{box-shadow:var(--sh-l);transform:translateY(-4px)}
+.is-val{font-family:'Poppins',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;background:linear-gradient(135deg,var(--blue),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.is-label{font-size:.8rem;color:var(--t4);margin-top:.3rem;line-height:1.3}
+
+.india-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.india-card{display:flex;gap:.75rem;align-items:flex-start;padding:1rem;background:var(--card);border:1px solid var(--bdr);border-radius:12px;transition:all .35s var(--ease)}
+.india-card:hover{border-color:var(--blue);box-shadow:var(--sh-m)}
+.ic-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:.9rem;color:var(--t9)}
+.ic-desc{font-size:.8rem;color:var(--t5);margin-top:.1rem;line-height:1.4}
+
+/* ═══════════════════════════════════
+   SLIDE 9: FUNDS
+   ═══════════════════════════════════ */
+.ask-slide{background:linear-gradient(180deg,#fafbfe 0%,#ecfbff 100%)}
+
+.ask-amount{text-align:center;margin-bottom:2rem}
+.ask-raising{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t4);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem}
+.ask-number{font-family:'Poppins',sans-serif;font-size:clamp(3rem,7vw,6rem);font-weight:900;background:linear-gradient(135deg,var(--blue),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+
+.fund-bar{display:flex;height:12px;border-radius:6px;overflow:hidden;margin-bottom:2.5rem;background:var(--bg2);box-shadow:inset 0 1px 3px rgba(0,0,0,.06)}
+.fund-seg{height:100%;transition:flex 1.2s var(--ease)}
+.slide.active .fund-seg{animation:grow-bar 1.2s var(--ease) forwards}
+@keyframes grow-bar{from{flex:0}}
+
+.fund-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.fund-item{text-align:center}
+.fi-pct{font-family:'Poppins',sans-serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:800;line-height:1}
+.fi-name{font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:var(--t9);margin-top:.4rem}
+.fi-desc{font-size:.8rem;color:var(--t5);margin-top:.2rem;line-height:1.4}
+
+/* ═══════════════════════════════════
+   SLIDE 10: CLOSING
+   ═══════════════════════════════════ */
+.closing{justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden}
+.closing .bg-img{opacity:.12;filter:saturate(.5)}
+.cls-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(250,251,254,.85),rgba(250,251,254,.95));z-index:1}
+.cls-content{position:relative;z-index:2;max-width:700px}
+.cls-logo{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--t4);margin-bottom:2rem}
+.cls-h{font-family:'Poppins',sans-serif;font-size:clamp(2.5rem,5.5vw,4.5rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;color:var(--t9);margin-bottom:1.25rem}
+.cls-p{font-size:clamp(1rem,1.5vw,1.2rem);color:var(--t5);line-height:1.7;margin-bottom:2rem}
+.cls-cta{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2.2rem;background:linear-gradient(135deg,var(--blue),var(--teal));border-radius:12px;font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:#fff;border:none;cursor:pointer;box-shadow:0 6px 24px rgba(37,99,235,.3);transition:all .35s var(--ease);margin-bottom:1.5rem}
+.cls-cta:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(37,99,235,.4)}
+.cls-links{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t4);letter-spacing:.05em}
+.cls-links span{color:var(--blue-d)}
+
+/* ═══════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════ */
+.nav{position:fixed;bottom:0;left:0;right:0;height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(250,251,254,.92);backdrop-filter:blur(20px);border-top:1px solid var(--bdr-l);z-index:100}
+.nav-brand{font-family:'Poppins',sans-serif;font-weight:800;font-size:.7rem;color:var(--t4);letter-spacing:.08em}
+.nav-brand span{color:var(--blue-d)}
+.nav-dots{display:flex;gap:6px;align-items:center}
+.nav-dot{width:7px;height:7px;border-radius:50%;background:var(--bdr);transition:all .4s var(--ease);cursor:pointer}
+.nav-dot.a{background:linear-gradient(135deg,var(--blue),var(--teal));width:24px;border-radius:4px;box-shadow:0 0 10px rgba(37,99,235,.3)}
+.nav-dot:hover:not(.a){background:var(--t3)}
+.nav-controls{display:flex;gap:.4rem;align-items:center}
+.nav-btn{width:30px;height:30px;border:1px solid var(--bdr);border-radius:7px;background:var(--card);color:var(--t4);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.75rem;transition:all .25s var(--ease)}
+.nav-btn:hover{border-color:var(--blue);color:var(--blue);box-shadow:var(--sh-s)}
+.nav-counter{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);min-width:2.5rem;text-align:center}
+
+.click-zone{position:fixed;top:0;bottom:50px;width:12%;z-index:50;cursor:pointer}
+.click-zone-l{left:0}
+.click-zone-r{right:0}
+
+/* ═══ CHART ANIMATIONS ═══ */
+.slide.active .bar-anim{animation:bar-grow .8s var(--ease) forwards}
+@keyframes bar-grow{from{transform:scaleY(0)}}
+.slide.active .donut-anim{animation:donut-draw 1.2s var(--ease) forwards}
+@keyframes donut-draw{from{stroke-dashoffset:314}}
+
+/* ═══ SVG CHART WRAPPER ═══ */
+.chart-box{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:1.25rem;box-shadow:var(--sh-s)}
+.chart-title{font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:700;color:var(--t9);margin-bottom:.75rem}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){
+  .slide{padding:3vh 4vw 56px}
+  .split,.split-55-45,.split-50-50,.split-45-55{grid-template-columns:1fr;gap:1.5rem}
+  .g3,.g4,.mkt-cards,.tw-grid,.prod-grid,.diff-grid,.fund-grid,.traction-stats,.india-stats,.india-grid,.team-grid{grid-template-columns:1fr 1fr}
+  .pipeline{flex-wrap:wrap}
+  .pipe-stage{min-width:calc(33% - .5rem);border-radius:10px!important;margin-bottom:.5rem}
+  .pipe-arrow{display:none}
+  .cover-grid{grid-template-columns:1fr}
+  .cover-right{display:none}
+  .cover-left{padding:3rem 4vw}
+  .milestones{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:repeat(3,1fr)}
+  .team-bottom{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+  .bg-img.side-only{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="deck" id="dk">
+
+<!-- ═══ SLIDE 0: COVER ═══ -->
+<section class="slide cover active" data-slide="0">
+  <img src="assets/cover-abstract.png" class="bg-img" alt="">
+  <div class="cover-grid">
+    <div class="cover-left">
+      <div class="c-logo rv">Liberin Technologies</div>
+      <h1 class="c-h1 rv" style="animation-delay:80ms">Powering the<br>Future of<br><span class="hl">AI & Language Models</span></h1>
+      <p class="c-sub rv" style="animation-delay:160ms">Investor Presentation &middot; March 2026</p>
+      <div class="c-badges rv" style="animation-delay:240ms">
+        <div class="c-badge"><div class="c-badge-ico">&#129504;</div><div class="c-badge-text"><strong>LLM & SLM</strong> Training</div></div>
+        <div class="c-badge"><div class="c-badge-ico">&#128640;</div><div class="c-badge-text"><strong>3 Products</strong> in Market</div></div>
+        <div class="c-badge"><div class="c-badge-ico">&#128101;</div><div class="c-badge-text"><strong>15+ Team</strong> &middot; IIT Delhi, CDAC</div></div>
+        <div class="c-badge"><div class="c-badge-ico">&#127758;</div><div class="c-badge-text"><strong>Enterprise</strong> &middot; 3 Continents</div></div>
+      </div>
+    </div>
+    <div class="cover-right">
+      <div class="c-orb c-orb-1"></div>
+      <div class="c-orb c-orb-2"></div>
+      <div class="c-orb c-orb-3"></div>
+      <img src="assets/hero-woman.png" class="c-person-2" alt="">
+      <img src="assets/hero-person.png" class="c-person" alt="">
+    </div>
+  </div>
+  <div class="c-hint">Press &rarr; or click to begin</div>
+</section>
+
+<!-- ═══ SLIDE 1: ABOUT ═══ -->
+<section class="slide" data-slide="1">
+  <img src="assets/team-group.png" class="bg-img side-only" style="opacity:.06;mask-image:linear-gradient(to left,rgba(0,0,0,.5),transparent);-webkit-mask-image:linear-gradient(to left,rgba(0,0,0,.5),transparent)" alt="">
+  <div class="lbl rv">Who We Are</div>
+  <h2 class="ttl rv" style="animation-delay:80ms">9 Years Building Enterprise AI &mdash;<br><span class="hl">Trusted Across 3 Continents</span></h2>
+
+  <div class="about-grid rv" style="animation-delay:160ms">
+    <div>
+      <div class="client-item">
+        <div class="ci-name">ESQ Data Solutions, California</div>
+        <div class="ci-meta">2016 &ndash; PRESENT &middot; 8+ YEARS</div>
+        <div class="ci-desc">AI banking solutions across 8 countries &middot; 15 Indian banks &middot; Visa, Bank of America</div>
+        <div class="ci-tags"><span class="ci-tag">AI Cash Forecasting</span><span class="ci-tag">Anomaly Detection</span></div>
+      </div>
+      <div class="client-item">
+        <div class="ci-name">Pitney Bowes, USA</div>
+        <div class="ci-meta">2016 &ndash; PRESENT &middot; 8+ YEARS</div>
+        <div class="ci-desc">India Post, Bangladesh Post &middot; Tax Meter for 8 state govts &middot; LLM Assistant</div>
+        <div class="ci-tags"><span class="ci-tag">Fine-tuned LLM</span><span class="ci-tag">Gov. Tax Platform</span></div>
+      </div>
+      <div class="client-item">
+        <div class="ci-name">Zenatix &middot; Schneider Electric</div>
+        <div class="ci-desc">AI Vision analytics for smart buildings &mdash; real-time intelligence</div>
+      </div>
+      <div class="client-item">
+        <div class="ci-name">FCI-CCM &mdash; BFSI Hub</div>
+        <div class="ci-desc">15M transactions/day &middot; 20+ insurance & banking institutions</div>
+        <div class="ci-tags"><span class="ci-tag">15M Txns/Day</span><span class="ci-tag">Regulated</span></div>
+      </div>
+    </div>
+    <div>
+      <img src="assets/person-presenting.png" class="about-img rv" style="animation-delay:240ms;margin-bottom:1.25rem" alt="">
+      <div class="qt rv" style="animation-delay:320ms">"Before Boliye and SEPTA, we spent 9 years earning the right to build them &mdash; in production, at scale, across 3 continents."</div>
+      <div class="rv" style="animation-delay:400ms;display:flex;gap:.4rem;flex-wrap:wrap;margin-top:1rem">
+        <span class="ci-tag">SymphonyAI</span><span class="ci-tag">Ensaras AI</span><span class="ci-tag">OYO</span><span class="ci-tag">Digital India</span><span class="ci-tag">AICTE</span><span class="ci-tag">LTI</span><span class="ci-tag">Indus Towers</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-stats rv" style="animation-delay:480ms">
+    <div class="about-stat"><div class="stat-num cu" data-t="9">0</div><div class="stat-label">Years</div></div>
+    <div class="about-stat"><div class="stat-num cu" data-t="3">0</div><div class="stat-label">Continents</div></div>
+    <div class="about-stat"><div class="stat-num">15M</div><div class="stat-label">Txns/Day</div></div>
+    <div class="about-stat"><div class="stat-num">15+</div><div class="stat-label">Banks</div></div>
+    <div class="about-stat"><div class="stat-num cu" data-t="8">0</div><div class="stat-label">Countries</div></div>
+    <div class="about-stat"><div class="stat-num cu" data-t="8">0</div><div class="stat-label">State Govts</div></div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 2: OPPORTUNITY ═══ -->
+<section class="slide" data-slide="2">
+  <img src="assets/ai-network.png" class="bg-img" style="opacity:.08" alt="">
+  <div class="lbl rv">The Opportunity</div>
+  <h2 class="ttl rv" style="animation-delay:80ms">A Massive & <span class="hl">Growing Market</span></h2>
+
+  <div class="mkt-cards rv" style="animation-delay:160ms">
+    <div class="mkt-card">
+      <div class="mkt-label">LLM Market</div>
+      <div class="mkt-from">$6.5B <span style="font-size:.7rem;color:var(--t4)">2025</span></div>
+      <div class="mkt-arrow">&darr;</div>
+      <div class="mkt-to">$36.1B</div>
+      <div class="mkt-cagr">33.2% CAGR &middot; 2030</div>
+    </div>
+    <div class="mkt-card">
+      <div class="mkt-label">SLM Market</div>
+      <div class="mkt-from">$5.3B <span style="font-size:.7rem;color:var(--t4)">2024</span></div>
+      <div class="mkt-arrow">&darr;</div>
+      <div class="mkt-to">$37.8B</div>
+      <div class="mkt-cagr">22.4% CAGR &middot; 2032</div>
+    </div>
+    <div class="mkt-card">
+      <div class="mkt-label">Conversational AI</div>
+      <div class="mkt-from">$11.6B <span style="font-size:.7rem;color:var(--t4)">2024</span></div>
+      <div class="mkt-arrow">&darr;</div>
+      <div class="mkt-to">$41.4B</div>
+      <div class="mkt-cagr">23.7% CAGR &middot; 2030</div>
+    </div>
+  </div>
+
+  <div class="split-50-50 rv" style="animation-delay:240ms;display:grid;gap:2rem">
+    <div class="chart-box">
+      <div class="chart-title">Market Growth Projection ($B)</div>
+      <svg viewBox="0 0 300 160" style="width:100%">
+        <defs><linearGradient id="g1" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#2563eb" stop-opacity=".85"/><stop offset="100%" stop-color="#2563eb" stop-opacity=".5"/></linearGradient><linearGradient id="g2" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#0d9488" stop-opacity=".85"/><stop offset="100%" stop-color="#0d9488" stop-opacity=".5"/></linearGradient><linearGradient id="g3" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#7c3aed" stop-opacity=".85"/><stop offset="100%" stop-color="#7c3aed" stop-opacity=".5"/></linearGradient></defs>
+        <line x1="40" y1="130" x2="280" y2="130" stroke="#e2e8f0" stroke-width=".5"/>
+        <line x1="40" y1="75" x2="280" y2="75" stroke="#e2e8f0" stroke-width=".5" stroke-dasharray="3,3"/>
+        <line x1="40" y1="30" x2="280" y2="30" stroke="#e2e8f0" stroke-width=".5" stroke-dasharray="3,3"/>
+        <text x="36" y="133" text-anchor="end" font-size="7" fill="#94a3b8" font-family="JetBrains Mono">$0</text>
+        <text x="36" y="78" text-anchor="end" font-size="7" fill="#94a3b8" font-family="JetBrains Mono">$20B</text>
+        <text x="36" y="33" text-anchor="end" font-size="7" fill="#94a3b8" font-family="JetBrains Mono">$40B</text>
+        <rect x="55" y="118" width="22" height="12" rx="3" fill="url(#g1)" class="bar-anim" style="transform-origin:55px 130px;animation-delay:.5s"/>
+        <rect x="82" y="28" width="22" height="102" rx="3" fill="url(#g1)" class="bar-anim" style="transform-origin:82px 130px;animation-delay:.65s"/>
+        <rect x="125" y="120" width="22" height="10" rx="3" fill="url(#g2)" class="bar-anim" style="transform-origin:125px 130px;animation-delay:.55s"/>
+        <rect x="152" y="26" width="22" height="104" rx="3" fill="url(#g2)" class="bar-anim" style="transform-origin:152px 130px;animation-delay:.7s"/>
+        <rect x="195" y="113" width="22" height="17" rx="3" fill="url(#g3)" class="bar-anim" style="transform-origin:195px 130px;animation-delay:.6s"/>
+        <rect x="222" y="24" width="22" height="106" rx="3" fill="url(#g3)" class="bar-anim" style="transform-origin:222px 130px;animation-delay:.75s"/>
+        <text x="93" y="24" text-anchor="middle" font-size="7" fill="#2563eb" font-weight="700" font-family="Poppins">$36.1B</text>
+        <text x="163" y="22" text-anchor="middle" font-size="7" fill="#0d9488" font-weight="700" font-family="Poppins">$37.8B</text>
+        <text x="233" y="20" text-anchor="middle" font-size="7" fill="#7c3aed" font-weight="700" font-family="Poppins">$41.4B</text>
+        <text x="68" y="144" text-anchor="middle" font-size="6" fill="#94a3b8">Now</text><text x="93" y="144" text-anchor="middle" font-size="6" fill="#2563eb" font-weight="600">2030</text>
+        <text x="136" y="144" text-anchor="middle" font-size="6" fill="#94a3b8">Now</text><text x="163" y="144" text-anchor="middle" font-size="6" fill="#0d9488" font-weight="600">2032</text>
+        <text x="206" y="144" text-anchor="middle" font-size="6" fill="#94a3b8">Now</text><text x="233" y="144" text-anchor="middle" font-size="6" fill="#7c3aed" font-weight="600">2030</text>
+        <rect x="252" y="25" width="7" height="7" rx="2" fill="#2563eb"/><text x="263" y="31" font-size="6" fill="#64748b">LLM</text>
+        <rect x="252" y="38" width="7" height="7" rx="2" fill="#0d9488"/><text x="263" y="44" font-size="6" fill="#64748b">SLM</text>
+        <rect x="252" y="51" width="7" height="7" rx="2" fill="#7c3aed"/><text x="263" y="57" font-size="6" fill="#64748b">Conv.AI</text>
+      </svg>
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:center;gap:1rem">
+      <div style="display:flex;align-items:center;gap:.75rem;font-size:1rem;color:var(--t5)">
+        <span style="font-size:1.3rem">&#127759;</span> Asia Pacific &mdash; <strong style="color:var(--teal)">fastest-growing region</strong>
+      </div>
+      <div style="display:flex;align-items:center;gap:.75rem;font-size:1rem;color:var(--t5)">
+        <span style="font-size:1.3rem">&#128197;</span> 2026 &mdash; <strong style="color:var(--blue-d)">"Year of SLMs"</strong>
+      </div>
+      <div style="display:flex;align-items:center;gap:.75rem;font-size:1rem;color:var(--t5)">
+        <span style="font-size:1.3rem">&#129302;</span> AI Agents &mdash; <strong style="color:var(--orange)">43.3% CAGR to $48.3B</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 3: TAILWINDS ═══ -->
+<section class="slide" data-slide="3">
+  <img src="assets/person-data.png" class="bg-img side-only" style="opacity:.06;mask-image:linear-gradient(to left,rgba(0,0,0,.4),transparent);-webkit-mask-image:linear-gradient(to left,rgba(0,0,0,.4),transparent)" alt="">
+  <div class="lbl rv">Market Tailwinds</div>
+  <h2 class="ttl rv" style="animation-delay:80ms">Why Now? The <span class="hl">Perfect Storm</span> for AI</h2>
+
+  <div class="tw-grid rv" style="animation-delay:160ms">
+    <div class="tw-card">
+      <div class="ico" style="background:var(--blue-l);font-size:1.3rem">&#127970;</div>
+      <div class="tw-title">Enterprise AI Surge</div>
+      <div class="tw-desc">62% of enterprises experimenting with AI agents. LLMs moving to production.</div>
+    </div>
+    <div class="tw-card">
+      <div class="ico" style="background:var(--teal-l);font-size:1.3rem">&#128241;</div>
+      <div class="tw-title">SLM Revolution 2026</div>
+      <div class="tw-desc">Lower cost, on-device, privacy-compliant. Domain-specific SLMs preferred.</div>
+    </div>
+    <div class="tw-card">
+      <div class="ico" style="background:rgba(124,58,237,.08);font-size:1.3rem">&#127470;&#127475;</div>
+      <div class="tw-title">India AI Boom</div>
+      <div class="tw-desc">$200B+ investments. 58K+ GPUs. Yotta $2B AI hub with Nvidia.</div>
+    </div>
+    <div class="tw-card">
+      <div class="ico" style="background:rgba(234,88,12,.08);font-size:1.3rem">&#128483;&#65039;</div>
+      <div class="tw-title">Multilingual Demand</div>
+      <div class="tw-desc">Indian language AI models in high demand. Massive gap in training capability.</div>
+    </div>
+    <div class="tw-card">
+      <div class="ico" style="background:rgba(220,38,38,.06);font-size:1.3rem">&#129302;</div>
+      <div class="tw-title">Agentic AI Wave</div>
+      <div class="tw-desc">$8B &rarr; $48.3B by 2030 at 43.3% CAGR. Voice agents transforming service.</div>
+    </div>
+    <div class="tw-card">
+      <div class="ico" style="background:var(--blue-l);font-size:1.3rem">&#128274;</div>
+      <div class="tw-title">On-Premise Push</div>
+      <div class="tw-desc">Data sovereignty = self-hosted SLMs. Sensitive data can't go to cloud.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 4: PRODUCTS ═══ -->
+<section class="slide" data-slide="4">
+  <div class="lbl rv">Product Portfolio</div>
+  <h2 class="ttl rv" style="animation-delay:80ms">Three AI Products <span class="hl">in Market</span></h2>
+
+  <div class="prod-grid rv" style="animation-delay:160ms">
+    <div class="prod-card">
+      <img src="assets/product-boliye.png" class="prod-img" alt="Boliye">
+      <div class="prod-body">
+        <div class="prod-name">Boliye</div>
+        <div class="prod-tag">Conversational AI Voice & Chat</div>
+        <div class="prod-desc">Multilingual voice & chat agents with WhatsApp, web real-time integration. CRM/ERP ready, compliance-first.</div>
+        <span class="prod-url">boliye.ai</span>
+      </div>
+    </div>
+    <div class="prod-card">
+      <img src="assets/product-septa.png" class="prod-img" alt="Septa">
+      <div class="prod-body">
+        <div class="prod-name">Septa</div>
+        <div class="prod-tag">Agentic AI Analytics</div>
+        <div class="prod-desc">Plans, coordinates, executes autonomously. No-code conversational BI that turns intelligence into action.</div>
+        <span class="prod-url">septa.live</span>
+      </div>
+    </div>
+    <div class="prod-card">
+      <img src="assets/product-piivacy.png" class="prod-img" alt="PiiVacy">
+      <div class="prod-body">
+        <div class="prod-name">PiiVacy</div>
+        <div class="prod-tag">AI Data Privacy & Compliance</div>
+        <div class="prod-desc">AI-powered PII detection for GDPR & data sovereignty. Built for BFSI & Healthcare with LLM Privacy Assessment.</div>
+        <span class="prod-url">piivacy.ai</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 5: PIPELINE ═══ -->
+<section class="slide" data-slide="5">
+  <div class="lbl rv">Core Capability</div>
+  <h2 class="ttl rv" style="animation-delay:80ms">End-to-End <span class="hl">LLM & SLM Training</span></h2>
+
+  <div class="pipeline rv" style="animation-delay:160ms">
+    <div class="pipe-stage"><div class="pipe-num">01</div><div class="pipe-title">Data Collection</div><div class="pipe-desc">Web, docs &middot; Multilingual</div><div class="pipe-arrow">&rsaquo;</div></div>
+    <div class="pipe-stage"><div class="pipe-num">02</div><div class="pipe-title">Data Cleaning</div><div class="pipe-desc">Toxicity &middot; Quality filter</div><div class="pipe-arrow">&rsaquo;</div></div>
+    <div class="pipe-stage"><div class="pipe-num">03</div><div class="pipe-title">Tokenization</div><div class="pipe-desc">BPE &middot; Custom vocab</div><div class="pipe-arrow">&rsaquo;</div></div>
+    <div class="pipe-stage"><div class="pipe-num">04</div><div class="pipe-title">Pre-Training</div><div class="pipe-desc">DDP/FSDP &middot; Transformers</div><div class="pipe-arrow">&rsaquo;</div></div>
+    <div class="pipe-stage"><div class="pipe-num">05</div><div class="pipe-title">Alignment</div><div class="pipe-desc">SFT, RLHF &middot; Constitutional</div><div class="pipe-arrow">&rsaquo;</div></div>
+    <div class="pipe-stage"><div class="pipe-num">06</div><div class="pipe-title">Eval & Safety</div><div class="pipe-desc">Benchmarks &middot; Red team</div><div class="pipe-arrow">&rsaquo;</div></div>
+    <div class="pipe-stage"><div class="pipe-num">07</div><div class="pipe-title">Deployment</div><div class="pipe-desc">Serving &middot; Monitoring</div></div>
+  </div>
+
+  <div class="lbl rv" style="animation-delay:320ms;margin-top:1rem">Differentiators</div>
+  <div class="diff-grid rv" style="animation-delay:400ms">
+    <div class="diff-card"><div class="ico" style="background:var(--teal-l);font-size:1.1rem">&#10003;</div><div><div class="diff-title">Proven Track Record</div><div class="diff-desc">Production-grade LLM/SLM training for enterprise &mdash; not theory.</div></div></div>
+    <div class="diff-card"><div class="ico" style="background:var(--blue-l);font-size:1.1rem">&#127760;</div><div><div class="diff-title">Multilingual Expertise</div><div class="diff-desc">Indian language models & multilingual data pipelines.</div></div></div>
+    <div class="diff-card"><div class="ico" style="background:rgba(124,58,237,.08);font-size:1.1rem">&#9889;</div><div><div class="diff-title">Full-Stack</div><div class="diff-desc">Raw data &rarr; deployed model. Zero third-party deps.</div></div></div>
+    <div class="diff-card"><div class="ico" style="background:rgba(234,88,12,.08);font-size:1.1rem">&#128176;</div><div><div class="diff-title">Cost Efficient</div><div class="diff-desc">35-40% GPU utilization on A100/H100 clusters.</div></div></div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 6: TEAM ═══ -->
+<section class="slide" data-slide="6">
+  <img src="assets/texture-grid.png" class="bg-img" style="opacity:.06" alt="">
+  <div class="lbl rv">Our Team</div>
+  <h2 class="ttl rv" style="animation-delay:80ms">World-Class <span class="hl">AI Engineering Team</span></h2>
+
+  <div class="team-grid rv" style="animation-delay:160ms">
+    <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,var(--blue),var(--teal))">P</div><div class="team-name">P Govind Raj</div><div class="team-role">Co-Founder & CTO</div><div class="team-bio">IIT Delhi &middot; Ex-CDAC &middot; 20 yrs</div></div>
+    <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,var(--teal),#34d399)">C</div><div class="team-name">Chinmay Garg</div><div class="team-role">Co-Founder & CIO</div><div class="team-bio">B.Tech, MBA &middot; Ex-CDAC &middot; 20 yrs</div></div>
+    <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">D</div><div class="team-name">Dr. Soman</div><div class="team-role">Research Lead</div><div class="team-bio">PhD IIT Delhi &middot; Ex-CDAC &middot; 16 yrs</div></div>
+    <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,var(--orange),#fb923c)">S</div><div class="team-name">Shubham Jindal</div><div class="team-role">Multimodal Research</div><div class="team-bio">MS UGA &middot; 15 yrs</div></div>
+    <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#dc2626,#f87171)">S</div><div class="team-name">Shikhar Gupta</div><div class="team-role">MLOps/Infra Lead</div><div class="team-bio">MS NCI Ireland &middot; Ex-CDAC &middot; 10 yrs</div></div>
+  </div>
+
+  <div class="team-bottom rv" style="animation-delay:240ms">
+    <div class="team-imgs">
+      <img src="assets/hero-person.png" class="team-img" alt="">
+      <img src="assets/hero-woman.png" class="team-img" alt="">
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Team Composition</div>
+      <svg viewBox="0 0 220 130" style="width:100%">
+        <g transform="translate(65,65)">
+          <circle r="45" fill="none" stroke="#e2e8f0" stroke-width="18"/>
+          <circle r="45" fill="none" stroke="#2563eb" stroke-width="18" stroke-dasharray="75 208" stroke-dashoffset="0" class="donut-anim" style="animation-delay:.5s"/>
+          <circle r="45" fill="none" stroke="#0d9488" stroke-width="18" stroke-dasharray="75 208" stroke-dashoffset="-75" class="donut-anim" style="animation-delay:.6s"/>
+          <circle r="45" fill="none" stroke="#7c3aed" stroke-width="18" stroke-dasharray="38 245" stroke-dashoffset="-150" class="donut-anim" style="animation-delay:.7s"/>
+          <circle r="45" fill="none" stroke="#ea580c" stroke-width="18" stroke-dasharray="95 188" stroke-dashoffset="-188" class="donut-anim" style="animation-delay:.8s"/>
+          <text text-anchor="middle" dy="-3" font-family="Poppins" font-size="16" font-weight="800" fill="#0f172a">15+</text>
+          <text text-anchor="middle" dy="10" font-size="6" fill="#94a3b8" font-family="JetBrains Mono">TOTAL</text>
+        </g>
+        <g transform="translate(130,22)">
+          <rect width="8" height="8" rx="2" fill="#2563eb"/><text x="12" y="7" font-size="7" fill="#64748b">Research (4)</text>
+          <rect y="16" width="8" height="8" rx="2" fill="#0d9488"/><text x="12" y="23" font-size="7" fill="#64748b">Engineering (4)</text>
+          <rect y="32" width="8" height="8" rx="2" fill="#7c3aed"/><text x="12" y="39" font-size="7" fill="#64748b">Safety (2)</text>
+          <rect y="48" width="8" height="8" rx="2" fill="#ea580c"/><text x="12" y="55" font-size="7" fill="#64748b">Leadership (5+)</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 7: TRACTION ═══ -->
+<section class="slide" data-slide="7">
+  <div class="lbl rv">Traction & Proof</div>
+  <h2 class="ttl rv" style="animation-delay:80ms">Not Just Talking &mdash; <span class="hl">Delivering</span></h2>
+
+  <div class="traction-stats rv" style="animation-delay:160ms">
+    <div class="traction-stat"><div class="ts-num cu" data-t="8">0</div><div class="ts-label">Years in Business</div></div>
+    <div class="traction-stat"><div class="ts-num">3</div><div class="ts-label">AI Products Live</div></div>
+    <div class="traction-stat"><div class="ts-num">15+</div><div class="ts-label">Enterprise Clients</div></div>
+    <div class="traction-stat"><div class="ts-num">20+</div><div class="ts-label">Yrs Founder Exp</div></div>
+  </div>
+
+  <div class="milestones rv" style="animation-delay:240ms">
+    <div class="milestone"><div class="ms-check">&#10003;</div><div class="ms-text"><strong>Production LLM/SLM</strong> deployed for enterprise</div></div>
+    <div class="milestone"><div class="ms-check">&#10003;</div><div class="ms-text"><strong>Boliye:</strong> Live multilingual voice & chat agents</div></div>
+    <div class="milestone"><div class="ms-check">&#10003;</div><div class="ms-text"><strong>Septa:</strong> Agentic AI &mdash; data &rarr; autonomous action</div></div>
+    <div class="milestone"><div class="ms-check">&#10003;</div><div class="ms-text"><strong>PiiVacy:</strong> PII detection for financial sector</div></div>
+    <div class="milestone"><div class="ms-check">&#10003;</div><div class="ms-text"><strong>IIT Delhi + CDAC</strong> pedigree in Indian language AI</div></div>
+    <div class="milestone"><div class="ms-check">&#10003;</div><div class="ms-text"><strong>Published research:</strong> MCP, Agentic AI, Privacy</div></div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 8: INDIA ═══ -->
+<section class="slide" data-slide="8">
+  <img src="assets/india-map.png" class="bg-img" style="opacity:.1" alt="">
+  <div class="lbl rv">India AI Ecosystem</div>
+  <h2 class="ttl rv" style="animation-delay:80ms">The <span class="hl">India Advantage</span></h2>
+
+  <div class="india-stats rv" style="animation-delay:160ms">
+    <div class="india-stat"><div class="is-val">$200B+</div><div class="is-label">AI Investment by 2028</div></div>
+    <div class="india-stat"><div class="is-val">58,000+</div><div class="is-label">GPUs &middot; IndiaAI Mission</div></div>
+    <div class="india-stat"><div class="is-val">$277B</div><div class="is-label">Private AI Infra Pledged</div></div>
+    <div class="india-stat"><div class="is-val">$2B</div><div class="is-label">Yotta Hub &middot; Nvidia GPUs</div></div>
+  </div>
+
+  <div class="lbl rv" style="animation-delay:240ms">Why This Matters</div>
+  <div class="india-grid rv" style="animation-delay:320ms">
+    <div class="india-card"><div class="ico" style="background:var(--blue-l);font-size:1.1rem">&#9889;</div><div><div class="ic-title">Massive GPU Access</div><div class="ic-desc">Subsidized compute via IndiaAI Mission.</div></div></div>
+    <div class="india-card"><div class="ico" style="background:var(--teal-l);font-size:1.1rem">&#127760;</div><div><div class="ic-title">Local Model Demand</div><div class="ic-desc">India-trained, multilingual, on-premise LLMs needed.</div></div></div>
+    <div class="india-card"><div class="ico" style="background:rgba(124,58,237,.08);font-size:1.1rem">&#127963;&#65039;</div><div><div class="ic-title">Government Backing</div><div class="ic-desc">Digital India, AICTE partnerships in place.</div></div></div>
+    <div class="india-card"><div class="ico" style="background:rgba(234,88,12,.08);font-size:1.1rem">&#128176;</div><div><div class="ic-title">Cost Advantage</div><div class="ic-desc">1/3rd global cost. Competitive vs US/EU.</div></div></div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 9: FUNDS ═══ -->
+<section class="slide ask-slide" data-slide="9">
+  <div class="lbl rv">The Ask</div>
+  <h2 class="ttl rv" style="animation-delay:80ms">Strategic <span class="hl">Investment Allocation</span></h2>
+
+  <div class="ask-amount rv" style="animation-delay:160ms">
+    <div class="ask-raising">Raising</div>
+    <div class="ask-number">$5M+</div>
+  </div>
+
+  <div class="fund-bar rv" style="animation-delay:240ms">
+    <div class="fund-seg" style="flex:4;background:var(--blue);border-radius:6px 0 0 6px"></div>
+    <div class="fund-seg" style="flex:3;background:var(--teal)"></div>
+    <div class="fund-seg" style="flex:2;background:var(--purple)"></div>
+    <div class="fund-seg" style="flex:1;background:var(--orange);border-radius:0 6px 6px 0"></div>
+  </div>
+
+  <div class="fund-grid rv" style="animation-delay:320ms">
+    <div class="fund-item"><div class="fi-pct" style="color:var(--blue)">40%</div><div class="fi-name">GPU Infrastructure</div><div class="fi-desc">A100/H100 clusters, cloud credits, storage, networking</div></div>
+    <div class="fund-item"><div class="fi-pct" style="color:var(--teal)">30%</div><div class="fi-name">Team Expansion</div><div class="fi-desc">10+ ML researchers, training engineers, MLOps</div></div>
+    <div class="fund-item"><div class="fi-pct" style="color:var(--purple)">20%</div><div class="fi-name">R&D & Products</div><div class="fi-desc">Boliye, Septa, PiiVacy + Indian language LLMs</div></div>
+    <div class="fund-item"><div class="fi-pct" style="color:var(--orange)">10%</div><div class="fi-name">Sales & GTM</div><div class="fi-desc">Enterprise sales, partners, US/AU expansion</div></div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 10: CLOSING ═══ -->
+<section class="slide closing" data-slide="10">
+  <img src="assets/closing-bg.png" class="bg-img" alt="">
+  <div class="cls-overlay"></div>
+  <div class="cls-content">
+    <div class="cls-logo rv">Liberin Technologies</div>
+    <h2 class="cls-h rv" style="animation-delay:80ms">Let's Build the<br><span class="hl">Future Together</span></h2>
+    <p class="cls-p rv" style="animation-delay:160ms">We have the team. We have the expertise. We have the products.<br><strong style="color:var(--t9)">Now we need the infrastructure to scale.</strong></p>
+    <button class="cls-cta rv" style="animation-delay:240ms">Let's Build Together &rarr;</button>
+    <div class="cls-links rv" style="animation-delay:320ms"><span>liberintechnologies.com</span> &middot; <span>boliye.ai</span> &middot; <span>septa.live</span> &middot; <span>piivacy.ai</span></div>
+  </div>
+</section>
+
+</div>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-brand"><span>LIBERIN</span> TECHNOLOGIES</div>
+  <div class="nav-dots" id="nav-dots"></div>
+  <div class="nav-controls"><button class="nav-btn" id="prev-btn">&larr;</button><span class="nav-counter" id="counter">1/11</span><button class="nav-btn" id="next-btn">&rarr;</button></div>
+</nav>
+<div class="click-zone click-zone-l" id="cz-left"></div>
+<div class="click-zone click-zone-r" id="cz-right"></div>
+
+<script>
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+  let locked = false;
+
+  // Build dot nav
+  const dotsContainer = document.getElementById('nav-dots');
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i === 0 ? ' a' : '');
+    dot.onclick = () => goTo(i);
+    dotsContainer.appendChild(dot);
+  }
+
+  function updateNav() {
+    document.querySelectorAll('.nav-dot').forEach((d, i) => d.classList.toggle('a', i === current));
+    document.getElementById('counter').textContent = (current + 1) + '/' + total;
+    document.getElementById('progress').style.width = ((current / (total - 1)) * 100) + '%';
+  }
+
+  function goTo(index) {
+    if (locked || index === current || index < 0 || index >= total) return;
+    locked = true;
+
+    const prev = slides[current];
+    const next = slides[index];
+    const forward = index > current;
+
+    // Reset reveal animations
+    next.querySelectorAll('.rv').forEach(el => {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = '';
+    });
+
+    prev.classList.remove('active');
+    next.style.transform = forward ? 'translateY(24px)' : 'translateY(-24px)';
+
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      next.classList.add('active');
+      next.style.transform = '';
+      current = index;
+      updateNav();
+      countUp(next);
+      setTimeout(() => { locked = false; }, 600);
+    }));
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); next(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(total - 1); }
+  });
+
+  // Click zones
+  document.getElementById('cz-left').onclick = prev;
+  document.getElementById('cz-right').onclick = next;
+  document.getElementById('prev-btn').onclick = prev;
+  document.getElementById('next-btn').onclick = next;
+
+  // Touch swipe
+  let touchX = 0;
+  document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', e => {
+    const diff = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(diff) > 50) { diff < 0 ? next() : prev(); }
+  }, { passive: true });
+
+  // Count-up animation
+  function countUp(slide) {
+    slide.querySelectorAll('.cu').forEach(el => {
+      const target = parseInt(el.dataset.t);
+      if (!target) return;
+      let count = 0;
+      const increment = Math.max(1, Math.floor(target / 25));
+      const timer = setInterval(() => {
+        count += increment;
+        if (count >= target) { count = target; clearInterval(timer); }
+        el.textContent = count;
+      }, 45);
+    });
+  }
+
+  countUp(slides[0]);
+  updateNav();
+})();
+</script>
+</body>
+</html>
